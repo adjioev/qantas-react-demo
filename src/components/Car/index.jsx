@@ -5,8 +5,21 @@ import FlatButton from 'material-ui/FlatButton';
 
 const Car = (props) => (
   <div>
-    Hello {props.name}
-    <FlatButton label="Default" />   
+    Title {props.title}
+    Review {props.review}
+
+        <Card>
+          <CardHeader
+            title={props.title}
+            subtitle={props.review}
+          />
+          <CardMedia
+            overlay={<CardTitle title={props.title} subtitle={props.review} />}
+          >
+            <img src={props.imageUrl} alt="" />
+          </CardMedia>
+          <CardTitle title={props.title} subtitle={props.review}  />
+        </Card>
    </div>
 );
 

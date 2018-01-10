@@ -1,23 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 // Material-UI
-import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 // Theme
-import { deepOrange500 } from 'material-ui/styles/colors'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
-import Car from './components/Car';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { deepOrange500 } from 'material-ui/styles/colors';
 
 
 // Font
-import 'typeface-roboto'
+import 'typeface-roboto';
 
 // Click handler
-import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin()
+// import injectTapEventPlugin from 'react-tap-event-plugin'
+// injectTapEventPlugin()
+
+import Car from './components/Car';
+
 
 // Styles
 const styles = {
@@ -45,18 +46,11 @@ class App extends Component {
   }
 
   onSubmit = e => {
-    // No real submit
     e.preventDefault()
-
-    // Get input value
     const text = this.refs.cool_text.input.value
-
-    // Set state
     this.setState({
       text
     })
-
-    // Do something with text
     alert(`You said : ${text}`)
   }
 
@@ -65,18 +59,13 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
       
         <div style={styles.container}>
-          <h1>Material-UI</h1>
-          <h2>example project</h2>
-          <form onSubmit={this.onSubmit}>
-            <TextField
-              ref='cool_text'
-              floatingLabelText='Say something cool!'
-              defaultValue={this.state.text}
+          <Car 
+            name="Alex"
+            make="Nissan"
+            price="50000" 
+            imageUrl="http://media.caranddriver.com/images/media/3124/2007-nissan-350z-photo-3786-s-429x262.jpg"
+            review="Super car"
             />
-            <br />
-            <RaisedButton type='submit' label='Submit' primary />
-          </form>
-          <Car name="Alex"/>
         </div>
       </MuiThemeProvider>
     )
