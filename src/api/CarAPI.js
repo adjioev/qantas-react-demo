@@ -108,17 +108,21 @@ const CarAPI = {
     getCarOfTheWeek: function () {
         return this.carOfTheWeek
     },
+
     getMakes: function () {
         return this.makes;
     },
+
     getModels: function () {
         return this.models
     },
+
     getMakeModels(id) {
         return this.getModels().map(data => {
           return data.filter(car => car.makeId === id);
         })
     },
+    
     getModelById: function (id) {
         return this.models.find(car => car.id === id);
     }

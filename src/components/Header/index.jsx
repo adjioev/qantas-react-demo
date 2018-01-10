@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import './index';
+import logo from '../../assets/logo.svg';
 
 const Header = () => (
-  <div>
-    <h1>Welcome to the Car Sales Website!</h1>
-  </div>
+  <header className="App-header">
+    <img src={logo} className="App-logo" alt="logo" />
+  </header>
 )
 
 export default Header

@@ -11,6 +11,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { deepOrange500 } from 'material-ui/styles/colors';
 
 import { Switch, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // Font
 import 'typeface-roboto';
@@ -21,11 +22,17 @@ import './App.css';
 // import injectTapEventPlugin from 'react-tap-event-plugin'
 // injectTapEventPlugin()
 
-import Car from './components/Car';
-import Search from './components/Search';
 import Header from './components/Header';
 
 import CarOfTheWeekPage from './pages/CarOfTheWeek';
+import CarView from './pages/CarView';
+import Search from './components/Search';
+
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 
 // Styles
 const styles = {
@@ -63,23 +70,27 @@ class App extends Component {
   render () {
     return (
       <div>
-           <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-    </header>  
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>  
       <MuiThemeProvider muiTheme={muiTheme}>
-
-
-          <div style={styles.container}>
-         
+          <div style={styles.container}>        
           <AppBar
             title="Qantas Car Sales"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-            // onRightIconButtonClick=""
-          />        
-
+            iconElementLeft={
+              <IconMenu
+              iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+              anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+              targetOrigin={{horizontal: 'left', vertical: 'top'}}
+              >
+              <MenuItem primaryText="HOME" containerElement={<Link to="/" />} />
+              <MenuItem primaryText="SEARCH" containerElement={<Link to="/search" />} />
+            </IconMenu>
+            }
+          />
         <Switch>
           <Route exact path='/' component={ CarOfTheWeekPage } />
-          <Route path='/model/:id' component={Car}/>
+          <Route path='/make/model/:id' component={ CarView }/>
           <Route path='/header' component={Header}/>
           <Route path='/search' component={Search}/>
         </Switch>          

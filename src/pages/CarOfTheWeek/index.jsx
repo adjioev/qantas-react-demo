@@ -4,9 +4,7 @@ import CarAPI from '../../api/CarAPI';
 import './index.css';
 
 const CarOfTheWeekPage = (props) => {
-    const carOfTheWeek = CarAPI.getCarOfTheWeek(
-        parseInt(props.match.params.number, 10)
-    );
+    const carOfTheWeek = CarAPI.getCarOfTheWeek();
 
     const carProps = CarAPI.getModelById(carOfTheWeek.modelId);
 
