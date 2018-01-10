@@ -1,47 +1,77 @@
 import React from 'react';
-import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import SearchIcon from 'material-ui/svg-icons/action/search';
+
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import CarAPI from '../../api/CarAPI'
 
 class Search extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            seconds: 0 
+        this.state = {
+            makeSelected: undefined,
+            modelSelected: undefined,
+            makeMenuData: CarAPI.getMakes(),
+            modelMenuData: []
         };
+
+        this.select = this.select.bind(this);
+        this.selectCarMake = this.selectCarMake.bind(this);
+        this.selectCarModel = this.selectCarModel.bind(this);
     }
 
-    tick() {
+
+    selectCarMake(event, index, value) {
+        const modelMenuData = CarAPI.getMakeModels(value);
+
         this.setState(prevState => ({
-            seconds: prevState.seconds + 1
+            ...prevState,
+            makeSelected: value,
+            modelMenuData
         }));
     }
 
-    componentDidMount() {
-        this.interval = setInterval(() => this.tick(), 1000);
+    selectCarModel(event, index, value) {
+        this.setState(prevState => ({
+            ...prevState,
+            modelSelected: value,
+        }));
     }
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
+    select() {
+        this.props.history.push(`/make/model/${this.state.modelSelected}`);
     }
 
     render() {
+        const style = {
+            marginRight: 20,
+        };
+
         return (
             <div>
-                Seconds: {this.state.seconds}
                 <SelectField
                     floatingLabelText="Car Make"
-                    value={this.state.value}
-                    onChange={this.handleChange}
+                    value={this.state.makeSelected}
+                    onChange={this.selectCarMake}
                 >
-                    <MenuItem value={1} primaryText="Never" />
-                    <MenuItem value={2} primaryText="Every Night" />
-                    <MenuItem value={3} primaryText="Weeknights" />
-                    <MenuItem value={4} primaryText="Weekends" />
-                    <MenuItem value={5} primaryText="Weekly" />
+                    {this.state.makeMenuData.map(x => <MenuItem key={x.id} value={x.id} primaryText={x.name} />)}
                 </SelectField>
 
+                <SelectField
+                    floatingLabelText="Car Model"
+                    value={this.state.modelSelected}
+                    onChange={this.selectCarModel}
+                >
+                    {this.state.modelMenuData.map(x => <MenuItem key={x.id} value={x.id} primaryText={x.name} />)}
+                </SelectField>
+
+                <FloatingActionButton mini={false} disabled={!this.state.modelSelected} style={style} onClick={this.select}>
+                    <SearchIcon />
+                </FloatingActionButton>
+
             </div>
+
         );
     }
 }

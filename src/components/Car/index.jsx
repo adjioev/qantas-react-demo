@@ -1,12 +1,11 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Card, CardHeader, CardMedia, CardTitle } from 'material-ui/Card';
 
 const Car = (props) => (
   <div>
     <Card>
       <CardHeader title={props.name} />
-      <CardMedia overlay={<CardTitle title={props.price} />}>
+      <CardMedia overlay={<CardTitle title={`Price: $${props.price}`} />}>
         <img src={props.imageUrl} alt="" />
       </CardMedia>
       <CardTitle subtitle={props.review}  />
