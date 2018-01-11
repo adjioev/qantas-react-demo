@@ -5,10 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-import 'typeface-roboto';
-import logo from './logo.svg';
-import './App.css';
-
 import Header from './components/Header';
 import Search from './components/Search';
 
@@ -16,13 +12,13 @@ import CarOfTheWeekPage from './pages/CarOfTheWeek';
 import CarView from './pages/CarView';
 import SearchView from './pages/SearchView';
 
-
-
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
+import 'typeface-roboto';
+import './App.css';
 
 // Styles
 const styles = {
@@ -33,16 +29,10 @@ const styles = {
 
 
 class App extends Component {
-  constructor (props, context) {
-    super(props, context)
-  }
-
   render () {
     return (
       <div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>  
+      <Header />
       <MuiThemeProvider>
           <div style={styles.container}>        
           <AppBar
@@ -61,13 +51,11 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ CarOfTheWeekPage } />
           <Route path='/make/model/:id' component={ CarView }/>
-          <Route path='/search' component={ Search }/>
+          <Route path='/search' component={ SearchView }/>
         </Switch>          
         </div>
-      </MuiThemeProvider> 
-      
+      </MuiThemeProvider>       
       </div>
-
     )
   }
 }

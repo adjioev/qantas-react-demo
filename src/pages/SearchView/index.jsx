@@ -1,34 +1,13 @@
 import React from 'react';
-import Car from '../../components/Car';
-import CarAPI from '../../api/CarAPI';
-import './index.css';
+import Search from '../../components/Search';
 
 class SearchView extends React.Component {
-    constructor(props) {
-        super(props);
         
-        this.state = {
-            carProps: {},
-            carOfTheWeek: {}
-        };
-
-        CarAPI.getCarOfTheWeek().then(carOfTheWeek => {        
-            CarAPI.getModelById(carOfTheWeek.modelId).then(carProps => {
-                this.setState(prevState =>({
-                    carProps,
-                    carOfTheWeek
-                }));
-            });
-        });
-    }
-
     render() {
         return (
             <div>
-                <h1>Search</h1>
-                <div className="carCard">
-                    <Car className="carCard" {...this.state.carProps} review={this.state.carOfTheWeek.review} />
-                </div>
+                <h1>Car Search</h1>
+                <Search {...this.props } />
             </div>
         )
     }

@@ -28,7 +28,6 @@ class Search extends React.Component {
         })
     }
 
-
     selectCarMake(event, index, value) {
         CarAPI.getMakeModels(value).then(modelMenuData => {
             this.setState(prevState => ({
