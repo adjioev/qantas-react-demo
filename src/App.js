@@ -6,14 +6,17 @@ import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import 'typeface-roboto';
-import logo from './assets/logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 import Header from './components/Header';
+import Search from './components/Search';
 
 import CarOfTheWeekPage from './pages/CarOfTheWeek';
 import CarView from './pages/CarView';
-import Search from './components/Search';
+import SearchView from './pages/SearchView';
+
+
 
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -58,8 +61,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ CarOfTheWeekPage } />
           <Route path='/make/model/:id' component={ CarView }/>
-          <Route path='/header' component={Header}/>
-          <Route path='/search' component={Search}/>
+          <Route path='/search' component={ Search }/>
         </Switch>          
         </div>
       </MuiThemeProvider> 

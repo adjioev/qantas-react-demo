@@ -12,24 +12,31 @@ class Search extends React.Component {
         this.state = {
             makeSelected: undefined,
             modelSelected: undefined,
-            makeMenuData: CarAPI.getMakes(),
+            makeMenuData: [],
             modelMenuData: []
         };
 
         this.select = this.select.bind(this);
         this.selectCarMake = this.selectCarMake.bind(this);
         this.selectCarModel = this.selectCarModel.bind(this);
+
+        CarAPI.getMakes().then(makeMenuData => {
+            this.setState(prevState => ({
+                ...prevState,
+                makeMenuData
+            }))
+        })
     }
 
 
     selectCarMake(event, index, value) {
-        const modelMenuData = CarAPI.getMakeModels(value);
-
-        this.setState(prevState => ({
-            ...prevState,
-            makeSelected: value,
-            modelMenuData
-        }));
+        CarAPI.getMakeModels(value).then(modelMenuData => {
+            this.setState(prevState => ({
+                ...prevState,
+                makeSelected: value,
+                modelMenuData
+            }));
+        });
     }
 
     selectCarModel(event, index, value) {

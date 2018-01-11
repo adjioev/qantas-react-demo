@@ -3,7 +3,7 @@ import Car from '../../components/Car';
 import CarAPI from '../../api/CarAPI';
 import './index.css';
 
-class CarOfTheWeekPage extends React.Component {
+class SearchView extends React.Component {
     constructor(props) {
         super(props);
         
@@ -12,8 +12,7 @@ class CarOfTheWeekPage extends React.Component {
             carOfTheWeek: {}
         };
 
-
-        CarAPI.getCarOfTheWeek().then(carOfTheWeek => {    
+        CarAPI.getCarOfTheWeek().then(carOfTheWeek => {        
             CarAPI.getModelById(carOfTheWeek.modelId).then(carProps => {
                 this.setState(prevState =>({
                     carProps,
@@ -26,7 +25,7 @@ class CarOfTheWeekPage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Car of the week</h1>
+                <h1>Search</h1>
                 <div className="carCard">
                     <Car className="carCard" {...this.state.carProps} review={this.state.carOfTheWeek.review} />
                 </div>
@@ -35,4 +34,4 @@ class CarOfTheWeekPage extends React.Component {
     }
 };
 
-export default CarOfTheWeekPage;
+export default SearchView;

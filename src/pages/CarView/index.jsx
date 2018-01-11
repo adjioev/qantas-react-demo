@@ -1,18 +1,26 @@
 import React from 'react';
 import Car from '../../components/Car';
 import CarAPI from '../../api/CarAPI';
-import './index.css';
+// import './index.css';
 
-const CarView = (props) => {
-    const carProps = CarAPI.getModelById(
-        parseInt(props.match.params.id, 10)
-    );
+class CarView extends React.Component {
+    constructor(props) {
+        super(props); 
 
-    return (
-        <div className="carCard">
-            <Car className="carCard" {...carProps} />
-        </div>
-    )
+        this.state = {};
+       
+        CarAPI.getModelById(parseInt(props.match.params.id, 10)).then(carProps => {
+            this.setState(prevState =>(carProps));
+        });
+    }
+
+    render() {
+        return (
+            <div className="carCard">
+                <Car className="carCard" {...this.state } />
+            </div>
+        )
+    }
 };
 
 export default CarView;
