@@ -1,5 +1,6 @@
 {
-  "name": "qantas-react-demo1",
+  "name": "qantas-react-demo",
+  "homepage" : "http://45.77.238.89/qantasreactdemo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

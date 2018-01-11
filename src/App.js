@@ -6,7 +6,6 @@ import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import Header from './components/Header';
-import Search from './components/Search';
 
 import CarOfTheWeekView from './views/CarOfTheWeekView';
 import CarView from './views/CarView';
