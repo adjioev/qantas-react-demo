@@ -3,7 +3,7 @@ import Car from '../../components/Car';
 import CarAPI from '../../api/CarAPI';
 import './index.css';
 
-class CarOfTheWeekPage extends React.Component {
+class CarOfTheWeekView extends React.Component {
     constructor(props) {
         super(props);
         
@@ -11,7 +11,6 @@ class CarOfTheWeekPage extends React.Component {
             carProps: {},
             carOfTheWeek: {}
         };
-
 
         CarAPI.getCarOfTheWeek().then(carOfTheWeek => {    
             CarAPI.getModelById(carOfTheWeek.modelId).then(carProps => {
@@ -35,4 +34,4 @@ class CarOfTheWeekPage extends React.Component {
     }
 };
 
-export default CarOfTheWeekPage;
+export default CarOfTheWeekView;

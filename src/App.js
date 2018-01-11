@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 import Header from './components/Header';
 import Search from './components/Search';
 
-import CarOfTheWeekPage from './pages/CarOfTheWeek';
-import CarView from './pages/CarView';
-import SearchView from './pages/SearchView';
+import CarOfTheWeekView from './views/CarOfTheWeekView';
+import CarView from './views/CarView';
+import SearchView from './views/SearchView';
 
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -49,9 +49,9 @@ class App extends Component {
             }
           />
         <Switch>
-          <Route exact path='/' component={ CarOfTheWeekPage } />
-          <Route path='/make/model/:id' component={ CarView }/>
+          <Route exact path='/' component={ CarOfTheWeekView } />
           <Route path='/search' component={ SearchView }/>
+          <Route path='/make/model/:id' component={ CarView }/>
         </Switch>          
         </div>
       </MuiThemeProvider>       
